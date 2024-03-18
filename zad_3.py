@@ -5,9 +5,9 @@ Property (klasa opisująca posiadłość/nieruchomość), posiadająca pola:
     rooms (int)
     price
     address
-House (klasa dziedzicząca klasę Property , która opisuje dom), posiadająca pola:
+House (dziedzicząca klasę Property, która opisuje dom), posiadająca pola:
     plot (rozmiar działki, int)
-Flat (klasa dziedzicząca klasę Property , która opisuje mieszkanie), posiadająca pola:
+Flat (dziedzicząca klasę Property, która opisuje mieszkanie), posiadająca pola:
     floor
 Dodatkowo:
 Każda z klas dziedziczących ma mieć zaimplementowaną metodę
@@ -17,6 +17,8 @@ tworzenia instancji klasy za pośrednictwem konstruktora.
 Stworzyć po jednym obiekcie klasy House oraz Flat, a następnie je
 wyświetlić.
 """
+
+
 class Property:
     def __init__(self, area, rooms, price, address):
         self.area = area
@@ -25,7 +27,8 @@ class Property:
         self.address = address
 
     def __str__(self):
-        return f"Area: {self.area} sq. meters, Rooms: {self.rooms}, Price: ${self.price}, Address: {self.address}"
+        return f"Area: {self.area} sq. m., Rooms: {self.rooms}, Price: {self.price}$, Address: {self.address}"
+
 
 class House(Property):
     def __init__(self, area, rooms, price, address, plot):
@@ -33,7 +36,8 @@ class House(Property):
         self.plot = plot
 
     def __str__(self):
-        return f"House - {super().__str__()}, Plot size: {self.plot} sq. meters"
+        return f"House - {super().__str__()}, Plot size: {self.plot} sq. m."
+
 
 class Flat(Property):
     def __init__(self, area, rooms, price, address, floor):
@@ -42,6 +46,7 @@ class Flat(Property):
 
     def __str__(self):
         return f"Flat - {super().__str__()}, Floor: {self.floor}"
+
 
 house = House(area=200, rooms=5, price=500000, address="123 Main St", plot=600)
 flat = Flat(area=100, rooms=3, price=300000, address="456 Elm St", floor=2)

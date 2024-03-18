@@ -39,6 +39,7 @@ class Brewery:
             breweries.append(Brewery(brewery))
         return breweries
 
+
 beweries = Brewery.fetch_breweries()
 for bewery in beweries:
     print(bewery)

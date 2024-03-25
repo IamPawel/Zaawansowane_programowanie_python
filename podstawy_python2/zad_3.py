@@ -10,8 +10,6 @@ tekst "Liczba parzysta" / "Liczba nieparzysta"
 def check_num(number):
     if number % 2 == 0:
         return True
-    else:
-        return False
 
 
 check1 = check_num(34234)

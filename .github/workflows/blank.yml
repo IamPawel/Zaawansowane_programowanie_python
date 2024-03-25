@@ -1,28 +1,17 @@
-name: PEP 8 Check
+name: Python Style Checker
 
-on:
-  push:
-    branches:
-      - main  
+on: push
 
 jobs:
-  lint:
+  style-check:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8  
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pycodestyle
-
-      - name: Run Pycodestyle
+          python-version: "3.x"
+      - name: Install PyCodeStyle
+        run: pip install pycodestyle
+      - name: Run PyCodeStyle
         run: pycodestyle .

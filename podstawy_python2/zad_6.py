@@ -6,10 +6,12 @@ powstałą listę.
 
 """
 
+
 def list_operation(a: list, b: list):
     newlist = list(a + b)
     newlist = list(set(newlist))
     newlist = [i**3 for i in newlist]
     print(newlist)
+
 
 list_operation([1, 2, 3, 4, 5, 6, 7, 8], [3, 4, 5, 6, 7])

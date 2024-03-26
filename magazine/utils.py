@@ -1,4 +1,6 @@
-def order_details(order):
-    return f'Order ID: {order.order_id}, Price: {order.price}'
-def product_details(product):
-    return f'Product ID: {product.product_id}, Name: {product.name}, Price: {product.price}'
+def get_order_total_price(order):
+    return order.product.price * order.quantity
+
+
+def get_product_details(product) -> str:
+    return f"Product ID: {product.product_id}, Name: {product.name}, $: {product.price}"

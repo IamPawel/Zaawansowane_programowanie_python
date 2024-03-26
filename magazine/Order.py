@@ -1,11 +1,11 @@
-form magzaine.utils import order_details
+from magazine.utils import get_order_details, get_order_total_price
+
 
 class Order:
-    def __init__(self, order_id, price):
+    def __init__(self, order_id, product, quantity):
         self.order_id = order_id
-        self.price = price
+        self.product = product
+        self.quantity = quantity
 
-    def __str__(self):
-        return order_details
-    def order_details(self):
-        return order_details(self)
+    def get_total_price(self):
+        return get_order_total_price(self)

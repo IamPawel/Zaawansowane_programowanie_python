@@ -1,3 +1,6 @@
+from magazine.utils import get_product_details
+
+
 class Product:
     def __init__(self, product_id, name, price):
         self.product_id = product_id
@@ -5,4 +8,4 @@ class Product:
         self.price = price
 
     def __str__(self):
-        return f'Product ID: {self.product_id}, Name: {self.name}, Price: {self.price}'
+        return get_product_details(self)

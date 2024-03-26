@@ -8,8 +8,7 @@ tekst "Liczba parzysta" / "Liczba nieparzysta"
 
 
 def check_num(number):
-    if number % 2 == 0:
-        return True
+    return number % 2 == 0
 
 
 check1 = check_num(34234)

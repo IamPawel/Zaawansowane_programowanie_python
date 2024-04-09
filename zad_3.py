@@ -51,6 +51,7 @@ class Tags:
         self.timestamp = timestamp
 
 
+"""
 def read_csv(file_name):
     data = []
     file_path = "database/" + file_name
@@ -62,6 +63,72 @@ def read_csv(file_name):
             movie_data = {header: value for header, value in zip(headers, row)}
             data.append(movie_data)
     return data
+"""
+
+
+@app.get("/movies")
+def get_movies():
+    movies = []
+    with open("database/movies.csv", newline="", encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if isinstance(row, dict):
+                movie_id = row.get("movieId")
+                title = row.get("title")
+                genres = row.get("genres")
+                movie = Movie(movie_id, title, genres)
+                movies.append(movie.__dict__)
+    return movies
+
+
+@app.get("/links")
+def get_links():
+    links = []
+    with open("database/links.csv", newline="", encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if isinstance(row, dict):
+                link = Links(row.get("movieId"), row.get("imdbId"), row.get("tmdbId"))
+                links.append(link.__dict__)
+    return links
+
+
+@app.get("database/ratings")
+def get_ratings():
+    ratings = []
+    with open("ratings.csv", newline="", encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if isinstance(row, dict):
+                rating = Ratings(
+                    row.get("userId"),
+                    row.get("movieId"),
+                    row.get("rating"),
+                    row.get("timestamp"),
+                )
+                ratings.append(rating.__dict__)
+    return ratings
+
+
+@app.get("/tags")
+def get_tags():
+    tags = []
+    with open("database/tags.csv", newline="", encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if isinstance(row, dict):
+                tag = Tags(
+                    row.get("userId"),
+                    row.get("movieId"),
+                    row.get("tag"),
+                    row.get("timestamp"),
+                )
+                tags.append(tag.__dict__)
+    return tags
+
+
+"""
+
 
 
 def get_movies():
@@ -84,6 +151,7 @@ def get_tags():
     return [Tags(**tag) for tag in tags]
 
 
+
 @app.get("/movies")
 async def movies():
     return get_movies()
@@ -102,3 +170,4 @@ async def ratings():
 @app.get("/tags")
 async def tags():
     return get_tags()
+"""

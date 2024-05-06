@@ -9,7 +9,7 @@ def get_next_id(filename):
     # Iteracja przez linie tekstu
     for line in lines:
         # Szukanie początku numeru ID
-        id_start = line.find("id: ") + len("id: ")
+        id_start = 0
         # Szukanie końca numeru ID (znajdowanie pierwszego znaku, który nie jest cyfrą)
         id_end = id_start
         while id_end < len(line) and line[id_end].isdigit():
@@ -27,7 +27,7 @@ def get_next_id(filename):
 def produce(filename):
     next_id = get_next_id(filename)
     with open(filename, "a") as file:
-        file.write(f"id: {next_id}; timestamp: {time.time()}; status: pending;\n")
+        file.write(f"{next_id};{time.time()};pending\n")
 
 
 if __name__ == "__main__":

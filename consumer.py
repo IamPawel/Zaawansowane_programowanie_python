@@ -55,6 +55,9 @@ def process_tasks(filename):
                     )
 
                 change_status(filename, id, "done")
+                print(
+                    f"Zadanie o id: {id} wykonane. Czas od dodania do wykonania: {round(time.time() - float(timestamp),2)} sekund"
+                )
                 break
             else:
                 print("Brak zadan do wykonania")

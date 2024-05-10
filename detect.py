@@ -5,7 +5,10 @@ cvNet = cv.dnn.readNetFromTensorflow(
 )
 
 
-def people_count(img):
+
+
+def people_count(path):
+    img = cv.imread(path)
     rows = img.shape[0]
     cols = img.shape[1]
     cvNet.setInput(cv.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
@@ -28,5 +31,7 @@ def people_count(img):
                 (255, 255, 0),
                 thickness=2,
             )
-    cv.imwrite("output.jpg", img)
-    return count
+    #cv.imwrite("output.jpg", img)
+    return f'Number of people: {count}', cv.imwrite("output.jpg", img)
+
+print(people_count("input.jpg"))

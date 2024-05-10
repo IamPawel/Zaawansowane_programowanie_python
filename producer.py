@@ -1,7 +1,10 @@
 # plik odpowiedzialny za zapisywanie do pliku pracy do wykonania.
 import time
+import uuid
+import requests
+import json
 
-
+"""
 def get_next_id(filename):
     with open(filename, "r") as file:
         lines = file.readlines()
@@ -23,11 +26,10 @@ def get_next_id(filename):
         next_id = max(ids) + 1
         return next_id
 
-
+"""
 def produce(filename):
-    next_id = get_next_id(filename)
     with open(filename, "a") as file:
-        file.write(f"{next_id};{time.time()};pending\n")
+        file.write(f"{uuid.uuid4()};{time.time()};pending\n")
 
 
 if __name__ == "__main__":

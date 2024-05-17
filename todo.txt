@@ -1,0 +1,10 @@
+consumer pobiera zadanie z kolejki
+pobrane body to json z parametrami:
+    data = { 
+        'uuid': id, 
+        'timestamp': time.time(), 
+        'file': base64_content, 
+        'type': 'file'}
+
+napisać:
+funkcje która na podstawie type robi read img

@@ -1,6 +1,10 @@
 import pika
 import json
-from detection import prepare_response
+from detection import prepare_response, read_json
+from flask import Flask, request, jsonify
+import base64
+import ast
+
 
 connection = pika.BlockingConnection(pika.ConnectionParameters("localhost"))
 
@@ -9,14 +13,19 @@ channel.queue_declare(queue="img_queue")
 channel.basic_qos(prefetch_count=1)
 
 
+
+
 def callback(ch, method, properties, body):
-    data = json.loads(body)
+    data = body.decode('utf-8')
+    data = data.replace("'", '"')
+    data = json.loads(data)
     try:
         prepare_response(data)
         print(f"Detection people on file {data['uuid']} completed")
     except Exception as e:
         print(f"Detection people on file {data['uuid']} failed - Error: {e}")
     ch.basic_ack(delivery_tag=method.delivery_tag)
+
 
 
 channel.basic_consume(queue="img_queue", auto_ack=False, on_message_callback=callback)

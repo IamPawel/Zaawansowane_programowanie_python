@@ -8,7 +8,9 @@ cvNet = cv.dnn.readNetFromTensorflow(
 def people_detection(image):
     rows = image.shape[0]
     cols = image.shape[1]
-    cvNet.setInput(cv.dnn.blobFromImage(image, size=(300, 300), swapRB=True, crop=False))
+    cvNet.setInput(
+        cv.dnn.blobFromImage(image, size=(300, 300), swapRB=True, crop=False)
+    )
     cvOut = cvNet.forward()
 
     count = 0

@@ -43,4 +43,3 @@ def prepare_response(json_data):
     img, count = people_detection(zdj)
     file_name = f"Id_{id}_person_{count}_execution_time_{round(time.time() - add_time)}sec.{img_extension}"
     cv.imwrite(file_name, img)
-

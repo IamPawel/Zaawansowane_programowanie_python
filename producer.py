@@ -32,7 +32,6 @@ def imput_file():
     data = generate_json(img_base64, "file")
     produce(f"{data}")
     return jsonify(data)
-     
 
 
 @app.route("/url_from_disk", methods=["POST"])
@@ -59,7 +58,6 @@ def generate_json(file, type):
         "type": type,
     }
     return data
-
 
 
 def produce(message):

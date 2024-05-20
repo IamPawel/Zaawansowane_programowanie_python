@@ -13,10 +13,8 @@ channel.queue_declare(queue="img_queue")
 channel.basic_qos(prefetch_count=1)
 
 
-
-
 def callback(ch, method, properties, body):
-    data = body.decode('utf-8')
+    data = body.decode("utf-8")
     data = data.replace("'", '"')
     data = json.loads(data)
     try:
@@ -25,7 +23,6 @@ def callback(ch, method, properties, body):
     except Exception as e:
         print(f"Detection people on file {data['uuid']} failed - Error: {e}")
     ch.basic_ack(delivery_tag=method.delivery_tag)
-
 
 
 channel.basic_consume(queue="img_queue", auto_ack=False, on_message_callback=callback)

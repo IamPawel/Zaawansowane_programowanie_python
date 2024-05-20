@@ -25,32 +25,34 @@ def imput_file():
     img = request.files["file"]
     img_content = img.read()
     base64_content = base64.b64encode(img_content).decode("utf-8")
-    id = str(uuid.uuid4())
-    data = {
-        "uuid": id,
-        "timestamp": time.time(),
-        "file": base64_content,
-        "type": "file",
-    }
-    produce(str(data))
+    data = generate_json(base64_content, "file")
+    produce(f"{data}")
     return json.dumps(data)
 
 
 @app.route("/url_from_disk", methods=["POST"])
 def url_from_disk():
-    path = request.args.get("url_from_disk")
-    id = str(uuid.uuid4())
-    data = {"uuid": id, "timestamp": time.time(), "file": path, "type": "disk"}
-    produce(str(data))
-    return json.dumps(json.dumps(data))
+    path = request.form.get("url_from_disk")
+    data = generate_json(path, "path")
+    produce(f"{data}")
+    return json.dumps(data)
 
 
 @app.route("/url", methods=["POST"])
 def url():
-    url = request.args.get("url")
-    id = str(uuid.uuid4())
-    data = {"uuid": id, "timestamp": time.time(), "file": url, "type": "link"}
-    produce(str(data))
+    url = request.form.get("url")
+    data = generate_json(url, "link")
+    produce(f"{data}")
+    return json.dumps(data)
+
+
+def generate_json(file, type):
+    data = {
+        "uuid": str(uuid.uuid4()),
+        "timestamp": time.time(),
+        "file": file,
+        "type": type,
+    }
     return json.dumps(data)
 
 

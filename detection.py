@@ -41,5 +41,7 @@ def read_json(data):
 def prepare_response(json_data):
     zdj, id, add_time, img_extension = read_json(json_data)
     img, count = people_detection(zdj)
+    output_folder = 'output_img'
     file_name = f"Id_{id}_person_{count}_execution_time_{round(time.time() - add_time)}sec.{img_extension}"
-    cv.imwrite(file_name, img)
+    full_path = os.path.join(output_folder, file_name)
+    cv.imwrite(full_path, img)

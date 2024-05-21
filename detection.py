@@ -1,13 +1,4 @@
-import cv2 as cv
-import numpy as np
-import requests
-import base64
-import json
-import time
-import os
-from PIL import Image
-from io import BytesIO
-from flask import Flask, request, jsonify
+from imports import *
 from detect_people import people_detection
 
 

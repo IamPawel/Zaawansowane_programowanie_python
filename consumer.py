@@ -1,9 +1,5 @@
-import pika
-import json
+from imports import *
 from detection import prepare_response, read_json
-from flask import Flask, request, jsonify
-import base64
-import ast
 
 
 connection = pika.BlockingConnection(pika.ConnectionParameters("localhost"))

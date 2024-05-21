@@ -1,12 +1,6 @@
-from flask import Flask, request, jsonify
+from imports import *
 from flask import render_template
-import uuid
-import time
-import json
-import pika
-import base64
-import cv2 as cv
-import numpy as np
+
 
 app = Flask(__name__)
 
@@ -34,17 +28,17 @@ def imput_file():
     return jsonify(data)
 
 
-@app.route("/url_from_disk", methods=["POST"])
+@app.route("/url_from_disk", methods=["GET"])
 def url_from_disk():
-    path = request.form.get("url_from_disk")
+    path = request.args.get("url_from_disk")
     data = generate_json(path, "path")
     produce(f"{data}")
     return jsonify(data)
 
 
-@app.route("/url", methods=["POST"])
+@app.route("/url", methods=["GET"])
 def url():
-    url = request.form.get("url")
+    url = request.args.get("url")
     data = generate_json(url, "link")
     produce(f"{data}")
     return jsonify(data)

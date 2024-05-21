@@ -1,4 +1,4 @@
-import cv2 as cv
+from imports import *
 
 cvNet = cv.dnn.readNetFromTensorflow(
     "models/frozen_inference_graph.pb", "models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt"

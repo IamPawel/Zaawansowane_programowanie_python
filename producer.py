@@ -49,13 +49,14 @@ def url():
     produce(f"{data}")
     return jsonify(data)
 
+
 @app.route("/url_get_multiple", methods=["GET"])
 def url_from_disk_get():
     path = request.args.get("url_get_multiple")
     data = generate_json(path, "path")
     for i in range(1000):
         produce(f"{data}")
-    return 'success', 200
+    return "success", 200
 
 
 def generate_json(file, type):

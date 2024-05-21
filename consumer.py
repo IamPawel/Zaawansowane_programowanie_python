@@ -14,8 +14,10 @@ def callback(ch, method, properties, body):
     data = data.replace("'", '"')
     data = json.loads(data)
     try:
-        prepare_response(data)
-        print(f"Detection people on file {data['uuid']} completed")
+        count = prepare_response(data)
+        print(
+            f"Detection people on file {data['uuid']} completed. Number of people: {count}"
+        )
     except Exception as e:
         print(f"Detection people on file {data['uuid']} failed - Error: {e}")
     ch.basic_ack(delivery_tag=method.delivery_tag)
